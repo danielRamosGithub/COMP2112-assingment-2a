@@ -58,9 +58,7 @@ var app = new Vue({
             }
         ],
 
-        listEmails: [],
-
-        test: []
+        listEmails: []
     },
     methods: {
         // function Local Store to save the state of the games
@@ -209,7 +207,7 @@ var app = new Vue({
                                 </div>
         
                                 <div class="pure-controls">
-                                    <button type="submit" class="pure-button pure-button-primary" id="submit">Submit</button>
+                                    <button type="submit" class="pure-button pure-button-primary" id="submit" >Submit</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -219,38 +217,28 @@ var app = new Vue({
             let main = document.getElementById('main');
             main.innerHTML = html_compose_form;
 
-            let emails = this.emails;
-        
             let submit = document.getElementById('submit');
-            submit.addEventListener('click', () => this.add_email(firstName)); 
-            // {
-            //     let obj_newEmail = {
-            //         lastName : document.forms.newEmail.lastName.value, 
-            //         avatar : document.forms.newEmail.avatar.value, 
-            //         firstName : document.forms.newEmail.firstName.value, 
-            //         emailText : document.forms.newEmail.emailText.value,
-            //         emailAddress : document.forms.newEmail.emailAddress.value
-            //     }
-            //     // add the new game to the list of games
-            //     console.log(obj_newEmail);
-            //     // emails.push(obj_newEmail);
+            submit.addEventListener('click', function(e) {
+                e.preventDefault();
+                let obj_newEmail = {
+                    lastName : document.forms.newEmail.lastName.value, 
+                    avatar : document.forms.newEmail.avatar.value, 
+                    firstName : document.forms.newEmail.firstName.value, 
+                    emailText : document.forms.newEmail.emailText.value,
+                    emailAddress : document.forms.newEmail.emailAddress.value
+                }
+                // add the new game to the list of games
+                let emails = JSON.parse(localStorage.getItem('items'));
+                emails.push(obj_newEmail);
         
-            //     // using Local Store
-            //     this.setLocalStore_Emails();
-            //     // setLocalStore_Games();
+                // using Local Store
+                this.setLocalStore_Emails();
+                // setLocalStore_Games();
                 
-            //     // update inbox
-            //     // inbox.click();
-            //     this.show_inbox();
-            // });
-        },
-
-        add_email: function (firstName) {
-            console.log(firstName);
-            let obj_newEmail = {
-                firstName : 'firstName'
-            }
-            this.test.push(obj_newEmail.value);
+                // update inbox
+                // inbox.click();
+                this.show_inbox();
+            });
         }
     }
 })
