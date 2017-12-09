@@ -1,0 +1,8 @@
+/* Custom CSS */
+
+/* make the iframe better looking */
+#main {
+    width: 100%;
+}
+.non-floater { overflow:hidden; }
+iframe { width:100%; padding:0; border:0; height: 600px }
